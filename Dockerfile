@@ -4,7 +4,8 @@ FROM ubuntu:20.04 AS DSFR_IMAGE
 USER root
 
 # Check unzip and wget
-RUN bash -c "if command -v unzip &>/dev/null && command -v wget &>/dev/null; then echo 'Tools are installed'; else echo 'Tools are missing'; fi"
+RUN bash -c "if command -v unzip &>/dev/null; then echo 'UNZIP is installed'; else echo 'UNZIP is missing'; fi"
+RUN bash -c "if command -v wget &>/dev/null; then echo 'WGET is installed'; else echo 'WGET is missing'; fi"
 
 # installation de unzip et wget dans l'image
 #COPY unzip /usr/local/bin/
