@@ -61,5 +61,5 @@ RUN for theme_filename in $(find /app/superset/static/assets -name "theme*.css")
         "$theme_filename" > temp.css && mv temp.css "$theme_filename"; done;
 
 # Ajout de la config d'override
-COPY --from=dsfr_image --chown=superset /app/superset_config.py /app/
+COPY --from=dsfr_image --chown=superset /app/superset_config.py /app/superset_config.py
 ENV SUPERSET_CONFIG_PATH /app/superset_config.py
