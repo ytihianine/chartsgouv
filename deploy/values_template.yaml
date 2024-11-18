@@ -1,0 +1,30 @@
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  hosts: 
+    - chartsgouv-mef-sg.lab.sspcloud.fr
+
+# Utiliser l'image docker qui contient le DSFR
+image:
+  repository: registry.gitlab.com/ytihianine/chartsgouv
+  tag: latest
+
+init:
+  adminUser:
+    password: admin-password
+    username: admin-username
+configOverrides:
+  # Pour la SECRET_KEY, utiliser le résultat de cette commande < openssl rand -base64 42 >
+  secret: |
+    SECRET_KEY = 'YourAppSecretKey'
+  supersetNode:
+    # Il est préférable d'utiliser une autre base postgres que celle créée automatique par le chart.
+    # Cela facilite les montées de versions de Superset en réduisant les impacts sur la config de votre instance.
+    connections:
+      db_host: 'db_host'
+      db_port: '5432'
+      db_user: db_user
+      db_pass: db_pass
+      db_name: db_name
+postgresql:
+  enabled: false
