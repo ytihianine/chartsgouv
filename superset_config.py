@@ -6,7 +6,7 @@ LANGUAGES = {
     "fr": {"flag": "fr", "name": "French"},
 }
 
-SECRET_KEY = "admin"
+SECRET_KEY = "lghbdGKL2g3dm9d8HlGl"
 
 DATABASE_DIALECT = "postgresql+psycopg2"
 DATABASE_USER = os.getenv("DB_USER")
