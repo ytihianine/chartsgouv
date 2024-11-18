@@ -14,15 +14,15 @@ RUN bash -c "if command -v wget &>/dev/null; then echo 'WGET is installed'; else
 WORKDIR /app
 
 # Define the repository and tag
-ENV REPO_NAME=dsfr
 ENV REPO_OWNER=GouvernementFR
+ENV REPO_NAME=dsfr
 ENV TAG=v1.12.1
 
-RUN wget -O dsfr-base.zip "https://github.com/${REPO_OWNER}/${REPO_NAME}/archive/refs/tags/${TAG}.zip"
-RUN unzip dsfr-base.zip && rm dsfr-base.zip
+RUN wget -O dsfr-base.zip "https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${TAG}/${REPO_NAME}-${TAG}.zip"
+RUN unzip dsfr-base.zip -d dsfr-base && rm dsfr-base.zip
 
-RUN wget -O dsfr-chart.zip "https://github.com/GouvernementFR/dsfr-chart/archive/refs/tags/v1.0.0.zip"
-RUN unzip dsfr-chart.zip && rm dsfr-chart.zip
+RUN wget -O dsfr-chart.zip "https://github.com/GouvernementFR/dsfr-chart/releases/download/v1.0.0/dsfr-chart-1.0.0.zip"
+RUN unzip dsfr-chart.zip -d dsfr-chart && rm dsfr-chart.zip
 
 # Import des templates custom supersets
 COPY superset ./superset-custom/
@@ -30,12 +30,8 @@ COPY superset ./superset-custom/
 RUN bash -c "ls"
 
 # Image to build charstgouv
-#FROM apache/superset:4.0.2 AS chartsgouv_img
+FROM apache/superset:4.0.2 AS chartsgouv_img
 
-#WORKDIR /app
 
 #RUN bash -c "ls"
 
-# Ajout de la config d'override
-#COPY --chown=superset superset_config.py /app/
-#ENV SUPERSET_CONFIG_PATH /app/superset_config.py
