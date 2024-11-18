@@ -27,6 +27,7 @@ RUN unzip dsfr-chart.zip -d dsfr-chart && rm dsfr-chart.zip
 
 # Import des templates custom supersets
 COPY superset-custom ./superset-custom/
+COPY superset_config.py ./superset_config.py
 
 RUN bash -c "ls"
 
