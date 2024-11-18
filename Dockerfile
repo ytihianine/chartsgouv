@@ -7,6 +7,9 @@ USER root
 RUN bash -c "if command -v unzip &>/dev/null; then echo 'UNZIP is installed'; else echo 'UNZIP is missing'; fi"
 RUN bash -c "if command -v wget &>/dev/null; then echo 'WGET is installed'; else echo 'WGET is missing'; fi"
 
+# Install wget and unzip
+RUN apt-get update && apt-get install -y wget unzip && rm -rf /var/lib/apt/lists/*
+
 # installation de unzip et wget dans l'image
 #COPY unzip /usr/local/bin/
 #COPY wget /usr/local/bin/
