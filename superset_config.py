@@ -6,6 +6,7 @@ LANGUAGES = {
     "fr": {"flag": "fr", "name": "French"},
 }
 
+# Override cette valeur
 SECRET_KEY = "lghbdGKL2g3dm9d8HlGl"
 
 DATABASE_DIALECT = "postgresql+psycopg2"
