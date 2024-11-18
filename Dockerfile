@@ -13,8 +13,10 @@ RUN bash -c "if command -v wget &>/dev/null; then echo 'WGET is installed'; else
 # Set the working directory
 WORKDIR /app
 
-RUN wget -O repo.zip "https://github.com/GouvernementFR/dsfr/tree/v1.12.1"
+RUN wget -O repo.zip "https://github.com/GouvernementFR/dsfr/archive/refs/tags/v1.12.1.zip"
+RUN unzip repo.zip && rm repo.zip
 
+RUN bash -c "ls"
 
 # installation de unzip et wget dans l'image
 #COPY unzip /usr/local/bin/
