@@ -51,17 +51,13 @@ COPY --from=dsfr_image /app/superset-custom/assets/500.html     /app/superset/st
 
 
 # Update de certaines valeurs css 
-#RUN for theme_filename in $(find /app/superset/static/assets -name "theme*.css"); do \
-#        sed \
-#        -e "s/#20a7c9/#000091/g" \
-#        -e "s/#45bed6/#000091/g" \
-#        -e "s/#1985a0/#000091/g" \
-#        "$theme_filename" > temp.css && mv temp.css "$theme_filename"; done;
+RUN for theme_filename in $(find /app/superset/static/assets -name "theme*.css"); do \
+        sed \
+        -e "s/#20a7c9/#000091/g" \
+        -e "s/#45bed6/#000091/g" \
+        -e "s/#1985a0/#000091/g" \
+        "$theme_filename" > temp.css && mv temp.css "$theme_filename"; done;
 
 # Ajout de la config d'override
 COPY --from=dsfr_image --chown=superset /app/superset_config.py /app/
 ENV SUPERSET_CONFIG_PATH /app/superset_config.py
-
-
-#RUN bash -c "ls"
-
