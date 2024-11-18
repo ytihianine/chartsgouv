@@ -29,5 +29,13 @@ RUN bash -c "ls"
 # Image to build charstgouv
 FROM apache/superset:4.0.2 AS chartsgouv_img
 
+WORKDIR /app
+COPY superset/ .
+
+
 RUN bash -c "ls"
 
+
+# Ajout de la config d'override
+#COPY --chown=superset superset_config.py /app/
+#ENV SUPERSET_CONFIG_PATH /app/superset_config.py
