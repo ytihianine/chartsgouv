@@ -24,17 +24,17 @@ RUN unzip dsfr-base.zip && rm dsfr-base.zip
 RUN wget -O dsfr-chart.zip "https://github.com/GouvernementFR/dsfr-chart/archive/refs/tags/v1.0.0.zip"
 RUN unzip dsfr-chart.zip && rm dsfr-chart.zip
 
+# Import des templates custom supersets
+COPY superset/ .
+
 RUN bash -c "ls"
 
 # Image to build charstgouv
-FROM apache/superset:4.0.2 AS chartsgouv_img
+#FROM apache/superset:4.0.2 AS chartsgouv_img
 
-WORKDIR /app
-COPY superset/ .
+#WORKDIR /app
 
-
-RUN bash -c "ls"
-
+#RUN bash -c "ls"
 
 # Ajout de la config d'override
 #COPY --chown=superset superset_config.py /app/
