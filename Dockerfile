@@ -38,17 +38,16 @@ WORKDIR /app
 # Copier tous les éléments du DSFR dans l'image superset
 COPY --from=dsfr_image /app/dsfr-base/dist /app/superset/static/assets/dsfr
 COPY --from=dsfr_image /app/dsfr-chart/Charts /app/superset/static/assets/dsfr-chart
-COPY --from=dsfr_image /app/superset/assets  /app/superset/static/assets/local
+COPY --from=dsfr_image /app/superset-custom/assets  /app/superset/static/assets/local
 
 # Override des templates
 COPY --from=dsfr_image /app/superset-custom/templates_overrides/superset/base.html      /app/superset/templates/superset/
 COPY --from=dsfr_image /app/superset-custom/templates_overrides/superset/basic.html     /app/superset/templates/superset/
 COPY --from=dsfr_image /app/superset-custom/templates_overrides/superset/public_welcome.html    /app/superset/templates/superset/
+COPY --from=dsfr_image /app/superset-custom/templates_overrides/tail_js_custom_extra.html   /app/superset/templates/tail_js_custom_extra.html
+COPY --from=dsfr_image /app/superset-custom/assets/404.html     /app/superset/static/assets/404.html
+COPY --from=dsfr_image /app/superset-custom/assets/500.html     /app/superset/static/assets/500.html
 
-
-#RUN cp ./superset/templates_overrides/tail_js_custom_extra.html /app/superset/templates/tail_js_custom_extra.html
-#RUN cp ./superset/assets/404.html /app/superset/static/assets/404.html
-#RUN cp ./superset/assets/500.html /app/superset/static/assets/500.html
 
 # Update de certaines valeurs css 
 #RUN for theme_filename in $(find /app/superset/static/assets -name "theme*.css"); do \
@@ -59,8 +58,8 @@ COPY --from=dsfr_image /app/superset-custom/templates_overrides/superset/public_
 #        "$theme_filename" > temp.css && mv temp.css "$theme_filename"; done;
 
 # Ajout de la config d'override
-#COPY --chown=superset superset_config.py /app/
-#ENV SUPERSET_CONFIG_PATH /app/superset_config.py
+COPY --from=dsfr_image --chown=superset superset_config.py /app/
+ENV SUPERSET_CONFIG_PATH /app/superset_config.py
 
 
 #RUN bash -c "ls"
