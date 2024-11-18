@@ -25,7 +25,7 @@ RUN wget -O dsfr-chart.zip "https://github.com/GouvernementFR/dsfr-chart/archive
 RUN unzip dsfr-chart.zip && rm dsfr-chart.zip
 
 # Import des templates custom supersets
-COPY superset/ .
+COPY superset .
 
 RUN bash -c "ls"
 
