@@ -16,21 +16,51 @@ WORKDIR /app
 # Define the repository and tag
 ENV REPO_OWNER=GouvernementFR
 ENV REPO_NAME=dsfr
-ENV TAG=v1.12.1
+ENV TAG_DSFR=v1.12.1
+ENV TAG_DSFR_CHART=v1.0.0
 
-RUN wget -O dsfr-base.zip "https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${TAG}/${REPO_NAME}-${TAG}.zip"
+RUN wget -O dsfr-base.zip "https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${TAG_DSFR}/${REPO_NAME}-${TAG_DSFR}.zip"
 RUN unzip dsfr-base.zip -d dsfr-base && rm dsfr-base.zip
 
-RUN wget -O dsfr-chart.zip "https://github.com/GouvernementFR/dsfr-chart/releases/download/v1.0.0/dsfr-chart-1.0.0.zip"
+RUN wget -O dsfr-chart.zip "https://github.com/${REPO_OWNER}/${REPO_NAME}-chart/releases/download/TAG_DSFR_CHART/${REPO_NAME}-chart-1.0.0.zip"
 RUN unzip dsfr-chart.zip -d dsfr-chart && rm dsfr-chart.zip
 
 # Import des templates custom supersets
-COPY superset ./superset-custom/
+COPY superset-custom ./superset-custom/
 
 RUN bash -c "ls"
 
 # Image to build charstgouv
 FROM apache/superset:4.0.2 AS chartsgouv_img
+
+WORKDIR /app
+
+# Copier tous les éléments du DSFR dans l'image superset
+COPY --from=dsfr_image /app/dsfr-base/dist /app/superset/static/assets/dsfr
+COPY --from=dsfr_image /app/dsfr-chart/Charts /app/superset/static/assets/dsfr-chart
+COPY --from=dsfr_image /app/superset/assets  /app/superset/static/assets/local
+
+# Override des templates
+COPY --from=dsfr_image /app/superset-custom/templates_overrides/superset/base.html      /app/superset/templates/superset/
+COPY --from=dsfr_image /app/superset-custom/templates_overrides/superset/basic.html     /app/superset/templates/superset/
+COPY --from=dsfr_image /app/superset-custom/templates_overrides/superset/public_welcome.html    /app/superset/templates/superset/
+
+
+#RUN cp ./superset/templates_overrides/tail_js_custom_extra.html /app/superset/templates/tail_js_custom_extra.html
+#RUN cp ./superset/assets/404.html /app/superset/static/assets/404.html
+#RUN cp ./superset/assets/500.html /app/superset/static/assets/500.html
+
+# Update de certaines valeurs css 
+#RUN for theme_filename in $(find /app/superset/static/assets -name "theme*.css"); do \
+#        sed \
+#        -e "s/#20a7c9/#000091/g" \
+#        -e "s/#45bed6/#000091/g" \
+#        -e "s/#1985a0/#000091/g" \
+#        "$theme_filename" > temp.css && mv temp.css "$theme_filename"; done;
+
+# Ajout de la config d'override
+#COPY --chown=superset superset_config.py /app/
+#ENV SUPERSET_CONFIG_PATH /app/superset_config.py
 
 
 #RUN bash -c "ls"
