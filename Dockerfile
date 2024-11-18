@@ -22,7 +22,7 @@ ENV TAG_DSFR_CHART=v1.0.0
 RUN wget -O dsfr-base.zip "https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${TAG_DSFR}/${REPO_NAME}-${TAG_DSFR}.zip"
 RUN unzip dsfr-base.zip -d dsfr-base && rm dsfr-base.zip
 
-RUN wget -O dsfr-chart.zip "https://github.com/${REPO_OWNER}/${REPO_NAME}-chart/releases/download/TAG_DSFR_CHART/${REPO_NAME}-chart-1.0.0.zip"
+RUN wget -O dsfr-chart.zip "https://github.com/GouvernementFR/dsfr-chart/releases/download/v1.0.0/dsfr-chart-1.0.0.zip"
 RUN unzip dsfr-chart.zip -d dsfr-chart && rm dsfr-chart.zip
 
 # Import des templates custom supersets
