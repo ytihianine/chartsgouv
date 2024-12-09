@@ -32,7 +32,7 @@ COPY superset_config.py ./superset_config.py
 RUN bash -c "ls"
 
 # Image to build charstgouv
-FROM apache/superset:4.0.2 AS chartsgouv_img
+FROM apache/superset:4.1.1 AS chartsgouv_img
 
 USER root
 
