@@ -47,12 +47,9 @@ RUN ls -la /app
 # ------------------------------------------
 # Stage 2: Build chartsgouv Image
 # ------------------------------------------
-# First static FROM to ensure Docker doesn't fail
-FROM apache/superset:4.1.1 AS base_image
-
-# Declare ARG again since it's lost across stages
 ARG SUPERSET_VERSION
-FROM apache/superset:${SUPERSET_VERSION} AS chartsgouv_img
+ARG SUPERSET_REPO
+FROM ${SUPERSET_REPO}:${SUPERSET_VERSION} AS chartsgouv_img
 
 USER root
 WORKDIR /app
