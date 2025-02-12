@@ -1,6 +1,8 @@
 # Define ARGS
 # Superset version
+ARG SUPERSET_REPO=apache/superset
 ARG SUPERSET_VERSION=4.1.1
+ENV SUPERSET_IMG=${SUPERSET_REPO}:${SUPERSET_VERSION}
 # DSFR versions
 ARG REPO_OWNER=GouvernementFR
 ARG REPO_NAME=dsfr
@@ -23,7 +25,8 @@ RUN bash -c "if command -v wget &>/dev/null; then echo 'WGET is installed'; else
 # Set the working directory
 WORKDIR /app
 
-RUN wget -O dsfr-base.zip "https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${TAG_DSFR}/${REPO_NAME}-${TAG_DSFR}.zip"
+ENV DSFR = https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${TAG_DSFR}/${REPO_NAME}-${TAG_DSFR}.zip
+RUN wget -O dsfr-base.zip ${DSFR}
 RUN unzip dsfr-base.zip -d dsfr-base && rm dsfr-base.zip
 
 RUN wget -O dsfr-chart.zip "https://github.com/GouvernementFR/dsfr-chart/releases/download/v1.0.0/dsfr-chart-1.0.0.zip"
@@ -37,7 +40,7 @@ RUN bash -c "ls"
 
 # Image to build charstgouv
 # Default value, they are overridden in gitlab CI
-FROM apache/superset:${SUPERSET_VERSION} AS chartsgouv_img
+FROM ${SUPERSET_IMG} AS chartsgouv_img
 
 USER root
 
