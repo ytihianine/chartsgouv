@@ -1,3 +1,13 @@
+# Define ARGS
+# Superset version
+ARG SUPERSET_VERSION=apache/superset:4.1.1
+# DSFR versions
+ARG REPO_OWNER=GouvernementFR
+ARG REPO_NAME=dsfr
+# Default value, they are overridden in gitlab CI
+ARG TAG_DSFR=v1.13.0
+ARG TAG_DSFR_CHART=v1.0.0
+
 # Image to get DSFR
 FROM ubuntu:20.04 AS dsfr_image
 
@@ -13,13 +23,6 @@ RUN bash -c "if command -v wget &>/dev/null; then echo 'WGET is installed'; else
 # Set the working directory
 WORKDIR /app
 
-# Define the repository and tag
-ARG REPO_OWNER=GouvernementFR
-ARG REPO_NAME=dsfr
-# Default value, they are overridden in gitlab CI
-ARG TAG_DSFR=v1.13.0
-ARG TAG_DSFR_CHART=v1.0.0
-
 RUN wget -O dsfr-base.zip "https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${TAG_DSFR}/${REPO_NAME}-${TAG_DSFR}.zip"
 RUN unzip dsfr-base.zip -d dsfr-base && rm dsfr-base.zip
 
@@ -34,8 +37,7 @@ RUN bash -c "ls"
 
 # Image to build charstgouv
 # Default value, they are overridden in gitlab CI
-ARG SUPERSET_VERSION=4.1.1
-FROM apache/superset:${SUPERSET_VERSION} AS chartsgouv_img
+FROM ${SUPERSET_VERSION} AS chartsgouv_img
 
 USER root
 
