@@ -6,6 +6,12 @@ ARG REPO_NAME=dsfr
 ARG TAG_DSFR=v1.13.0
 ARG TAG_DSFR_CHART=v1.0.0
 
+# Making ENV vars
+ENV REPO_OWNER=$REPO_OWNER
+ENV REPO_NAME=$REPO_NAME
+ENV TAG_DSFR=$TAG_DSFR
+ENV TAG_DSFR_CHART=$TAG_DSFR_CHART
+
 # ------------------------------------------
 # Stage 1: Download DSFR
 # ------------------------------------------
