@@ -9,6 +9,20 @@ image:
   repository: registry.gitlab.com/ytihianine/chartsgouv
   tag: latest
 
+# Nécessaire d'installer les packages des connectors manuellement depuis la 4.1
+bootstrapScript: |
+  #!/bin/bash
+  # Update system packages and install dependencies
+  apt update
+  
+  # Install Python dependencies
+  pip install psycopg2-binary
+
+  # Create a bootstrap log file if not already created
+  if [ ! -f ~/bootstrap ]; then 
+    echo "Running Superset with uid {{ .Values.runAsUser }}" > ~/bootstrap
+  fi
+
 init:
   adminUser:
     password: admin-password
