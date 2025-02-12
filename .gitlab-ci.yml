@@ -9,7 +9,7 @@ build-image:
   variables:
     DSFR_VERSION: "v1.13.0"
     DSFR_CHART_VERSION: "v1.0.0"
-    SUPERSET_VERSION: "apache/superset:4.1.1"
+    SUPERSET_VERSION: "4.1.1"
   script:
     - echo $CI_REGISTRY
     - echo $CI_REGISTRY_IMAGE

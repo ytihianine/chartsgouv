@@ -1,6 +1,6 @@
 # Define ARGS
 # Superset version
-ARG SUPERSET_VERSION=apache/superset:4.1.1
+ARG SUPERSET_VERSION=4.1.1
 # DSFR versions
 ARG REPO_OWNER=GouvernementFR
 ARG REPO_NAME=dsfr
@@ -37,7 +37,7 @@ RUN bash -c "ls"
 
 # Image to build charstgouv
 # Default value, they are overridden in gitlab CI
-FROM ${SUPERSET_VERSION} AS chartsgouv_img
+FROM apache/superset:${SUPERSET_VERSION} AS chartsgouv_img
 
 USER root
 
