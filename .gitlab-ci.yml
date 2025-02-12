@@ -17,10 +17,5 @@ build-image:
     - echo "DSFR_VERSION -- $DSFR_VERSION"
     - echo "DSFR_CHART_VERSION -- $DSFR_CHART_VERSION"
     - echo "SUPERSET_VERSION -- $SUPERSET_VERSION"
-    - docker build \
-      -f Dockerfile \
-      --build-arg TAG_DSFR=${DSFR_VERSION} \
-      --build-arg TAG_DSFR_CHART=${DSFR_CHART_VERSION} \
-      --build-arg SUPERSET_VERSION=${SUPERSET_VERSION} \
-      -t $CI_REGISTRY_IMAGE:${SUPERSET_VERSION} .
+    - docker build -f Dockerfile --build-arg TAG_DSFR=${DSFR_VERSION} --build-arg TAG_DSFR_CHART=${DSFR_CHART_VERSION} --build-arg SUPERSET_VERSION=${SUPERSET_VERSION} -t $CI_REGISTRY_IMAGE:${SUPERSET_VERSION} .
     - docker push $CI_REGISTRY_IMAGE:$SUPERSET_VERSION
