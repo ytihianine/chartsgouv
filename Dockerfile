@@ -31,10 +31,12 @@ WORKDIR /app
 
 # Define DSFR Download URL
 # Download DSFR
+RUN echo "https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${TAG_DSFR}/${REPO_NAME}-v${TAG_DSFR}.zip"
 RUN wget -O dsfr-base.zip "https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${TAG_DSFR}/${REPO_NAME}-v${TAG_DSFR}.zip"
 RUN unzip dsfr-base.zip -d dsfr-base && rm dsfr-base.zip
 
 # Download DSFR Chart dynamically
+RUN echo "https://github.com/${REPO_OWNER}/dsfr-chart/releases/download/v${TAG_DSFR_CHART}/dsfr-chart-${TAG_DSFR_CHART}.zip"
 RUN wget -O dsfr-chart.zip "https://github.com/${REPO_OWNER}/dsfr-chart/releases/download/v${TAG_DSFR_CHART}/dsfr-chart-${TAG_DSFR_CHART}.zip"
 RUN unzip dsfr-chart.zip -d dsfr-chart && rm dsfr-chart.zip
 
