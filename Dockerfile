@@ -24,7 +24,7 @@ WORKDIR /app
 
 # Define DSFR Download URL
 ENV DSFR_URL="https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${TAG_DSFR}/${REPO_NAME}-${TAG_DSFR}.zip"
-
+RUN echo "$DSFR_URL"
 # Download DSFR
 RUN wget -O dsfr-base.zip ${DSFR_URL}
 RUN unzip dsfr-base.zip -d dsfr-base && rm dsfr-base.zip
