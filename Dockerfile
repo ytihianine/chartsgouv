@@ -1,10 +1,10 @@
 # Define ARGS (Defaults, overridden in GitLab CI)
 ARG SUPERSET_REPO=apache/superset
 ARG SUPERSET_VERSION=4.1.1
-ARG REPO_OWNER=GouvernementFR
-ARG REPO_NAME=dsfr
-ARG TAG_DSFR=v1.13.0
-ARG TAG_DSFR_CHART=v1.0.0
+ARG REPO_OWNER="GouvernementFR"
+ARG REPO_NAME="dsfr"
+ARG TAG_DSFR="v1.13.0"
+ARG TAG_DSFR_CHART="v1.0.0"
 
 # Making ENV vars
 ENV REPO_OWNER=${REPO_OWNER}
