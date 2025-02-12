@@ -211,7 +211,7 @@ THEME_OVERRIDES = {
         "secondary": {
             "base": "FF1493",
             "dark1": DSFR_COLORS["sun"]["grey-0-1000"], 
-            "dark2": DSFR_COLORS["sun"]["blue-france-sun-113-625"], 
+            "dark2": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
             "dark3": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
             "light1": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
             "light2": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
@@ -233,7 +233,7 @@ THEME_OVERRIDES = {
             "base": DSFR_COLORS["sun"]["error-425-625"],
             "dark1": DSFR_COLORS["sun"]["error-425-625"],
             "dark2": DSFR_COLORS["sun"]["grey-0-1000"],
-            "light1": DSFR_COLORS["sun"]["error-425-625"], 
+            "light1": DSFR_COLORS["sun"]["error-425-625"],
             "light2": DSFR_COLORS["sun"]["error-950-100"],
         },
         "warning": {
@@ -351,7 +351,7 @@ EXTRA_SEQUENTIAL_COLOR_SCHEMES = [
         "isDefault": False,
         "colors": [
             DSFR_COLORS["sun"][colorname],
-            DSFR_COLORS["sun"]["grey-950-100"], 
+            DSFR_COLORS["sun"]["grey-950-100"],
         ],
     }
     for colorname in [
@@ -383,15 +383,14 @@ HTML_SANITIZATION = False
 # https://github.com/syntax-tree/hast-util-sanitize/blob/main/lib/schema.js
 # For example, the following configuration would allow the rendering of the
 # style attribute for div elements and the ftp protocol in hrefs:
-#HTML_SANITIZATION_SCHEMA_EXTENSIONS = {
-#  "attributes": {
-#    "div": ["style"],
-#  },
-#  "protocols": {
-#    "href": ["ftp"],
-#  }
-#}
+# HTML_SANITIZATION_SCHEMA_EXTENSIONS = {
+#   "attributes": {
+#     "div": ["style"],
+#   },
+#   "protocols": {
+#     "href": ["ftp"],
+#   }
+# }
 FAB_ADD_SECURITY_API = True
 
 SUPERSET_DASHBOARD_POSITION_DATA_LIMIT = 6553500
-
