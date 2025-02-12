@@ -40,23 +40,9 @@ APP_NAME = "Superset"
 # Specify the App icon
 APP_ICON = "/static/assets/local/images/app_icon.png"
 
-# JS -- Can be dangerous in production
+# JS -- very permissive, not for production
 TALISMAN_CONFIG = {
-    "content_security_policy": {
-        "default-src": ["'self'"],
-        "img-src": ["'self'", "data:"],
-        "worker-src": ["'self'", "blob:"],
-        "connect-src": [
-            "'self'",
-            "https://api.mapbox.com",
-            "https://events.mapbox.com",
-        ],
-        "object-src": "'none'",
-        "style-src": ["'self'", "'unsafe-inline'"],
-        "script-src": ["'self'", "'strict-dynamic'"],
-    },
-    "content_security_policy_nonce_in": ["script-src"],
-    "force_https": False,
+    "content_security_policy": False
 }
 
 DSFR_COLORS = {
@@ -210,7 +196,7 @@ THEME_OVERRIDES = {
         },
         "secondary": {
             "base": "FF1493",
-            "dark1": DSFR_COLORS["sun"]["grey-0-1000"], 
+            "dark1": DSFR_COLORS["sun"]["grey-0-1000"],
             "dark2": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
             "dark3": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
             "light1": DSFR_COLORS["sun"]["blue-france-sun-113-625"],
