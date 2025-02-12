@@ -40,6 +40,25 @@ APP_NAME = "Superset"
 # Specify the App icon
 APP_ICON = "/static/assets/local/images/app_icon.png"
 
+# JS
+TALISMAN_CONFIG = {
+    "content_security_policy": {
+        "default-src": ["'self'"],
+        "img-src": ["'self'", "data:"],
+        "worker-src": ["'self'", "blob:"],
+        "connect-src": [
+            "'self'",
+            "https://api.mapbox.com",
+            "https://events.mapbox.com",
+        ],
+        "object-src": "'none'",
+        "style-src": ["'self'", "'unsafe-inline'"],
+        "script-src": ["'self'", "'strict-dynamic'"],
+    },
+    "content_security_policy_nonce_in": ["script-src"],
+    "force_https": False,
+}
+
 DSFR_COLORS = {
   "sun": {
     "grey-1000-50": "#fff",
