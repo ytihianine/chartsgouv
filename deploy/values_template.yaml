@@ -8,6 +8,7 @@ ingress:
 image:
   repository: registry.gitlab.com/ytihianine/chartsgouv
   tag: latest
+  pullPolicy: Always
 
 # Nécessaire d'installer les packages des connectors manuellement depuis la 4.1
 bootstrapScript: |

@@ -14,10 +14,11 @@ RUN bash -c "if command -v wget &>/dev/null; then echo 'WGET is installed'; else
 WORKDIR /app
 
 # Define the repository and tag
-ENV REPO_OWNER=GouvernementFR
-ENV REPO_NAME=dsfr
-ENV TAG_DSFR=v1.13.0
-ENV TAG_DSFR_CHART=v1.0.0
+ARG REPO_OWNER=GouvernementFR
+ARG REPO_NAME=dsfr
+# Default value, they are overridden in gitlab CI
+ARG TAG_DSFR=v1.13.0
+ARG TAG_DSFR_CHART=v1.0.0
 
 RUN wget -O dsfr-base.zip "https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${TAG_DSFR}/${REPO_NAME}-${TAG_DSFR}.zip"
 RUN unzip dsfr-base.zip -d dsfr-base && rm dsfr-base.zip
@@ -32,7 +33,9 @@ COPY superset_config.py ./superset_config.py
 RUN bash -c "ls"
 
 # Image to build charstgouv
-FROM apache/superset:4.1.1 AS chartsgouv_img
+# Default value, they are overridden in gitlab CI
+ARG SUPERSET_VERSION=4.1.1
+FROM apache/superset:${SUPERSET_VERSION} AS chartsgouv_img
 
 USER root
 
