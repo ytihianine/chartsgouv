@@ -23,10 +23,8 @@ RUN command -v unzip && command -v wget
 WORKDIR /app
 
 # Define DSFR Download URL
-ENV DSFR_URL="https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${TAG_DSFR}/${REPO_NAME}-${TAG_DSFR}.zip"
-RUN echo "$DSFR_URL"
 # Download DSFR
-RUN wget -O dsfr-base.zip ${DSFR_URL}
+RUN wget -O dsfr-base.zip "https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${TAG_DSFR}/${REPO_NAME}-${TAG_DSFR}.zip"
 RUN unzip dsfr-base.zip -d dsfr-base && rm dsfr-base.zip
 
 # Download DSFR Chart dynamically
