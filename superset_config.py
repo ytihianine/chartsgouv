@@ -40,7 +40,7 @@ APP_NAME = "Superset"
 # Specify the App icon
 APP_ICON = "/static/assets/local/images/app_icon.png"
 
-# JS
+# JS -- Can be dangerous in production
 TALISMAN_CONFIG = {
     "content_security_policy": {
         "default-src": ["'self'"],
