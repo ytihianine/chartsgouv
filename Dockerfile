@@ -3,8 +3,8 @@ ARG SUPERSET_REPO=apache/superset
 ARG SUPERSET_VERSION=4.1.1
 ARG REPO_OWNER=GouvernementFR
 ARG REPO_NAME=dsfr
-ARG TAG_DSFR=v1.13.0
-ARG TAG_DSFR_CHART=v1.0.0
+ARG TAG_DSFR=1.13.0
+ARG TAG_DSFR_CHART=1.0.0
 
 
 # ------------------------------------------
@@ -31,12 +31,11 @@ WORKDIR /app
 
 # Define DSFR Download URL
 # Download DSFR
-RUN echo "https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${TAG_DSFR}/${REPO_NAME}-${TAG_DSFR}.zip"
-RUN wget -O dsfr-base.zip "https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${TAG_DSFR}/${REPO_NAME}-${TAG_DSFR}.zip"
+RUN wget -O dsfr-base.zip "https://github.com/${REPO_OWNER}/${REPO_NAME}/releases/download/${TAG_DSFR}/${REPO_NAME}-v${TAG_DSFR}.zip"
 RUN unzip dsfr-base.zip -d dsfr-base && rm dsfr-base.zip
 
 # Download DSFR Chart dynamically
-RUN wget -O dsfr-chart.zip "https://github.com/${REPO_OWNER}/dsfr-chart/releases/download/${TAG_DSFR_CHART}/dsfr-chart-${TAG_DSFR_CHART}.zip"
+RUN wget -O dsfr-chart.zip "https://github.com/${REPO_OWNER}/dsfr-chart/releases/download/v${TAG_DSFR_CHART}/dsfr-chart-${TAG_DSFR_CHART}.zip"
 RUN unzip dsfr-chart.zip -d dsfr-chart && rm dsfr-chart.zip
 
 # Import custom Superset templates
