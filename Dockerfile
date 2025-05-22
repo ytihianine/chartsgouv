@@ -72,3 +72,4 @@ RUN find /app/superset/static/assets -name "theme*.css" -exec sed -i \
         -e "s/#45bed6/#000091/g" \
         -e "s/#1985a0/#000091/g" {} \;
 
+USER superset
