@@ -33,7 +33,7 @@ jobs:
           if [[ "${GITHUB_REF}" == "refs/heads/pre-release" ]]; then
             echo "IMAGE_NAME=ghcr.io/${{ github.repository }}-test" >> $GITHUB_ENV
           else
-            echo "IMAGE_NAME=ghcr.io/${{ github.repository }}" >> $GITHUB_ENV
+            run: echo "IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/$(basename ${{ github.repository }})" >> $GITHUB_ENV
           fi
 
       - name: Build Docker image
