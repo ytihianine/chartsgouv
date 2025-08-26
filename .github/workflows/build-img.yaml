@@ -6,6 +6,7 @@ on:
       - main
       - pre-release
       - dev
+  workflow_dispatch:
 
 env:
   SUPERSET_VERSION: ${{ vars.SUPERSET_VERSION }} 
